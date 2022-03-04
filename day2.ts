@@ -2,7 +2,6 @@ import * as fs from "fs"
 
 let input: number[] = fs.readFileSync('./inputs/day2-input.txt').toString().split(',').map(i => Number(i))
 
-//To do this, before running the program, replace position 1 with the value 12 and replace position 2 with the value 2. What value is left at position 0 after the program halts?
 function processIntCode(prog: number[]): number[] {
     for (let i = 0; i < prog.length; i += 4) {
         let progCopy = [...prog]
@@ -23,10 +22,11 @@ function processIntCode(prog: number[]): number[] {
 }
 
 //part one
-// input[1] = 12
-// input[2] = 2
-let partOne = processIntCode(input)
-//console.log(partOne[0])
+let partOneInput = [...input]
+partOneInput[1] = 12
+partOneInput[2] = 2
+let partOne = processIntCode(input)[0]
+
 
 //part two
 function calcNounAndVerb(prog: number[], desiredOutput: number): number[] {
@@ -43,5 +43,7 @@ function calcNounAndVerb(prog: number[], desiredOutput: number): number[] {
     }
     return [0, 1]
 }
-let partTwo = calcNounAndVerb(input, 19690720)
-console.log(100 * partTwo[0] + partTwo[1])
+let partTwoCalc = calcNounAndVerb(input, 19690720)
+let partTwo = 100 * partTwoCalc[0] + partTwoCalc[1]
+let outputStringDay2 = `Day 2\nPart One: ${partOne} \nPart Two: ${partTwo}\n`
+export { outputStringDay2 }

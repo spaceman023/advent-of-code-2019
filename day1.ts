@@ -19,8 +19,8 @@ function massToFuel(mass: number): number {
 let partTwo: number = input.reduce((a, b) => a + massToFuel(b), 0)
 
 //output answers
-let outputStringDay1 = `Day 1\nPart One: ${partOne} \nPart Two: ${partTwo}`
-console.log(outputStringDay1)
+let outputStringDay1 = `Day 1\nPart One: ${partOne} \nPart Two: ${partTwo}\n`
+
 
 
 export { outputStringDay1 }
