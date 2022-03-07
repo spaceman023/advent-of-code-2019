@@ -13,7 +13,7 @@ type instruction = {
     direction: string;
     distance: number;
 }
-const wires: string[] = fs.readFileSync('./inputs/day3-input.txt').toString().split("\n")
+const wires: string[] = fs.readFileSync('./solutions/inputs/day3-input.txt').toString().split("\n")
 function parseInstructions(w: string): instruction[] {
     return w.split(',')
         .map(i => {

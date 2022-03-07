@@ -1,6 +1,6 @@
 import * as fs from "fs"
 
-let input: number[] = fs.readFileSync('./inputs/day2-input.txt').toString().split(',').map(i => Number(i))
+let input: number[] = fs.readFileSync('./solutions/inputs/day2-input.txt').toString().split(',').map(i => Number(i))
 
 function processIntCode(prog: number[]): number[] {
     for (let i = 0; i < prog.length; i += 4) {

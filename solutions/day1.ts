@@ -1,7 +1,6 @@
 import * as fs from "fs"
 
-
-let input: number[] = fs.readFileSync('./inputs/day1-input.txt').toString().split('\n').filter(i => i !== "").map(i => Number(i))
+let input: number[] = fs.readFileSync('./solutions/inputs/day1-input.txt').toString().split('\n').filter(i => i !== "").map(i => Number(i))
 
 //part one
 let partOne: number = input.reduce((a, b) => a + (Math.floor(b / 3) - 2), 0)
