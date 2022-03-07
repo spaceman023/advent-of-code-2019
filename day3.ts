@@ -74,11 +74,18 @@ function calcManhattanDistance(a: point, b: point): number {
     return Math.abs(a.x - b.x) + Math.abs(a.y - b.y)
 }
 
+function calcTotalWireDistance(p: point, a: wire, b: wire): number {
+    let aDist = a.points.findIndex(i => i.x === p.x && i.y === p.y)
+    let bDist = b.points.findIndex(i => i.x === p.x && i.y === p.y)
+    return aDist + bDist
+}
 function solve(input: string[]): number {
     let instructions = input.map(i => parseInstructions(i))
     let [a, b] = instructions.map(i => createWire(i))
     let intersections = findWireIntersects(a, b)
     let distances = intersections.map(i => calcManhattanDistance({ x: 0, y: 0 }, i))
+    let distance2 = intersections.map(i => calcTotalWireDistance(i, a, b))
+    return Math.min(...distance2.slice(1, distance2.length))
     return Math.min(...distances.slice(1, distances.length))
 }
 console.log(solve(wires))
