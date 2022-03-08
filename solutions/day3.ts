@@ -14,7 +14,7 @@ type instruction = {
     distance: number;
 };
 const wires: string[] = fs
-    .readFileSync("./solutions/inputs/day3-input.txt")
+    .readFileSync("./inputs/day3-input.txt")
     .toString()
     .split("\n");
 function parseInstructions(w: string): instruction[] {

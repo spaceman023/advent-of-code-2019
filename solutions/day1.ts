@@ -1,7 +1,7 @@
 import * as fs from "fs";
 
 let input: number[] = fs
-    .readFileSync("./solutions/inputs/day1-input.txt")
+    .readFileSync("./inputs/day1-input.txt")
     .toString()
     .split("\n")
     .filter((i) => i !== "")
