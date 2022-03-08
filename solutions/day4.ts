@@ -1,7 +1,7 @@
 const inputRange = [197487, 673251];
 let passesPartOne = 0;
 let passesPartTwo = 0;
-//part one
+
 for (let i = inputRange[0]; i < inputRange[1]; i++) {
     let k = i
         .toString()
