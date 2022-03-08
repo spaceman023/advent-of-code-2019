@@ -80,6 +80,7 @@ function calcTotalWireDistance(p: point, a: wire, b: wire): number {
     let bDist = b.points.findIndex((i) => i.x === p.x && i.y === p.y);
     return aDist + bDist;
 }
+
 function solve(input: string[]): number[] {
     let instructions = input.map((i) => parseInstructions(i));
     let [a, b] = instructions.map((i) => createWire(i));
