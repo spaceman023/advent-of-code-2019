@@ -72,7 +72,41 @@ const output: intProg = {
   },
 };
 
-const operations = [add, multiply, print, output];
+const lessthan: intProg = {
+  opcode: 7,
+  numberOfParams: 3,
+  prog: (
+    pmodes: number[],
+    params: number[],
+    program: number[],
+    input: number
+  ): number[] => {
+    const [p1, p2] = handleParamModes(pmodes, params, program);
+    const [, , pos] = params;
+    const output = p1 < p2 ? 1 : 0;
+    program.splice(pos, 1, output);
+    return program;
+  },
+};
+
+const equals: intProg = {
+  opcode: 8,
+  numberOfParams: 3,
+  prog: (
+    pmodes: number[],
+    params: number[],
+    program: number[],
+    input: number
+  ): number[] => {
+    const [p1, p2] = handleParamModes(pmodes, params, program);
+    const [, , pos] = params;
+    const output = p1 === p2 ? 1 : 0;
+    program.splice(pos, 1, output);
+    return program;
+  },
+};
+
+const operations = [add, multiply, print, output, equals, lessthan];
 
 function processParameterMode(paramSpecs: number): instruction {
   let workArray = paramSpecs
@@ -114,10 +148,30 @@ function run(program: number[], input: number): void {
     const op: number = program[ptr];
     if (op === 99) break;
     const { opcode, pmodes } = processParameterMode(op);
-    const cop = operations.find((i) => i.opcode === opcode);
-    const params = program.slice(ptr + 1, ptr + 1 + cop.numberOfParams);
-    program = cop.prog(pmodes, params, program, input);
-    ptr += cop.numberOfParams + 1;
+    if (opcode === 5 || opcode === 6) {
+      const params = program.slice(ptr + 1, ptr + 3);
+      const [p1, pos] = handleParamModes(pmodes, params, program);
+      if (opcode === 5) {
+        if (p1 !== 0) {
+          ptr = pos;
+        } else {
+          ptr += 3;
+        }
+      } else if (opcode === 6) {
+        if (p1 === 0) {
+          ptr = pos;
+        } else {
+          ptr += 3;
+        }
+      }
+    } else {
+      const cop = operations.find((i) => i.opcode === opcode);
+      const params = program.slice(ptr + 1, ptr + 1 + cop.numberOfParams);
+      program = cop.prog(pmodes, params, program, input);
+      ptr += cop.numberOfParams + 1;
+    }
   }
 }
-run(program, 1);
+//count to five
+
+run(program, 5);
