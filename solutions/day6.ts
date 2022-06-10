@@ -1,10 +1,9 @@
-import { warn } from "console";
 import * as fs from "fs";
 
 let input: string[] = fs
   .readFileSync("./inputs/day6-input.txt")
   .toString()
-  .split("\n")
+  .split("\n");
 
 let orbitSystem = {};
 for (let i of input) {
@@ -35,26 +34,26 @@ function getDepth(orbit) {
   }
   return count;
 }
-let output = 0
-for (let o of Object.keys(orbitSystem)){
-  output += getDepth(orbitSystem[o])
+let output = 0;
+for (let o of Object.keys(orbitSystem)) {
+  output += getDepth(orbitSystem[o]);
 }
-function chainUp(orbit){
-  const chain = []
+function chainUp(orbit) {
+  const chain = [];
   let parent = orbit.parent;
   while (parent) {
-    chain.push(parent)
+    chain.push(parent);
     parent = orbitSystem[parent].parent;
   }
   return chain;
 }
-const youChain = chainUp(orbitSystem['YOU'])
-const sanChain = chainUp(orbitSystem['SAN'])
-for (let i = 0; i < youChain.length; i++){
-  const val = youChain[i]
-  const idx = sanChain.indexOf(val)
-  if (idx >= 0){
-    console.log(idx + i)
-    break
+const youChain = chainUp(orbitSystem["YOU"]);
+const sanChain = chainUp(orbitSystem["SAN"]);
+for (let i = 0; i < youChain.length; i++) {
+  const val = youChain[i];
+  const idx = sanChain.indexOf(val);
+  if (idx >= 0) {
+    console.log(idx + i);
+    break;
   }
 }
