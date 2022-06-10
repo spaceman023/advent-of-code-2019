@@ -187,7 +187,7 @@ function run(program: number[], inputs: number[]): number {
   return output;
 }
 
-const permutator = (inputArr) => {
+const permutator = (inputArr = []) => {
   let result = [];
 
   const permute = (arr = [], m = []) => {
